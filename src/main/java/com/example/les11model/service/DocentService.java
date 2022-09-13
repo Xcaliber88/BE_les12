@@ -28,8 +28,14 @@ public class DocentService {
 
     }
 
-    public Optional<Docent> getDocentById(Long id){
-        return repos.findById(id);
+    public Docent getDocentById(Long id){
+        Optional<Docent> od = repos.findById(id);
+        if(od.isPresent()){
+            return od.get();
+        }
+        else {
+            throw new RuntimeException("docent niet gevonden");
+        }
     }
 
     public Iterable<Docent> getDocenten() {

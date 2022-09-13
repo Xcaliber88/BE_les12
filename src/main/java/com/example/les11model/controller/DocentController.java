@@ -41,6 +41,7 @@ public class DocentController {
         }
 
 
+
 //        @GetMapping("/docenten/{id}")
 //                public ResponseEntity<Object> getDocentById(@PathVariable Long id){
 //            return new ResponseEntity<>(service.getDocentById(id), HttpStatus.OK);
@@ -51,7 +52,13 @@ public class DocentController {
 //        return new ResponseEntity<>(repos.findByDobBefore(LocalDate.of(1981,1,1)), HttpStatus.OK);
 //    }
     }
+    @GetMapping("/docenten/{id}/cursussen")
+    public ResponseEntity<Object> getCoursesForTeacher(@PathVariable Long id){
+        Docent d = service.getDocentById(id);
 
+        return new ResponseEntity<>(d.getCursussen(), HttpStatus.OK);
+
+    }
 
     @GetMapping("/docenten/{id}")
     public ResponseEntity<Object> getDocentById(@PathVariable Long id) {

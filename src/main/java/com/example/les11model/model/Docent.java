@@ -1,10 +1,10 @@
 package com.example.les11model.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name="docenten")
@@ -19,6 +19,10 @@ public class Docent {
     private String lastname;
 
     private LocalDate dob;
+
+    @OneToMany(mappedBy = "docent")
+    @JsonIgnore
+    List<Cursus> cursussen;
 
     public Long getId() {
         return id;
@@ -50,5 +54,9 @@ public class Docent {
 
     public void setDob(LocalDate dob) {
         this.dob = dob;
+    }
+
+    public List<Cursus> getCursussen() {
+        return cursussen;
     }
 }
